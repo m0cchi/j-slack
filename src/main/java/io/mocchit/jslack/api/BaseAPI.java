@@ -1,4 +1,4 @@
-package io.mocchit.jslack;
+package io.mocchit.jslack.api;
 
 import java.net.HttpURLConnection;
 

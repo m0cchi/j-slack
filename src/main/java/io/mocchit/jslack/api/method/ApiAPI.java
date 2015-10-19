@@ -1,6 +1,6 @@
 package io.mocchit.jslack.api.method;
 
-import io.mocchit.jslack.BaseAPI;
+import io.mocchit.jslack.api.BaseAPI;
 
 import com.sun.corba.se.spi.orbutil.fsm.Guard.Result;
 

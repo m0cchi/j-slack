@@ -1,4 +1,4 @@
-package io.mocchit.jslack.api;
+package io.mocchit.jslack;
 
 import io.mocchit.jslack.api.method.ApiAPI;
 
