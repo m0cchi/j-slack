@@ -6,4 +6,8 @@ public interface BaseAPI {
 	Result send(String api, String param);
 
 	String getToken();
+	
+	default String getTokenParam(){
+		return "token=" + getToken();
+	}
 }
