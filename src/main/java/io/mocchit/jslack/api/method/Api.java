@@ -4,7 +4,12 @@ import io.mocchit.jslack.api.BaseAPI;
 import io.mocchit.jslack.api.Result;
 
 public interface Api extends BaseAPI {
-	default Result test() {
+	/**
+	 * Checks API calling code.
+	 * 
+	 * @return
+	 */
+	default Result testApi() {
 		Result result = send("api.test", "");
 		return result;
 	}
