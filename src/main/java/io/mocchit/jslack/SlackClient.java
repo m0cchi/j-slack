@@ -1,7 +1,8 @@
 package io.mocchit.jslack;
 
 import io.mocchit.jslack.api.Result;
-import io.mocchit.jslack.api.method.ApiAPI;
+import io.mocchit.jslack.api.method.Api;
+import io.mocchit.jslack.api.method.Auth;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -14,7 +15,7 @@ import java.net.URL;
 
 import javax.net.ssl.HttpsURLConnection;
 
-public class SlackClient implements ApiAPI {
+public class SlackClient implements Api , Auth{
 	private static String FAIL_CODE = "{\"ok\":false}";
 	private String token;
 
@@ -43,14 +44,11 @@ public class SlackClient implements ApiAPI {
 	public Result send(String api, String param) {
 		String result = FAIL_CODE;
 		try {
-			URL url = new java.net.URL(URL + api);
+			URL url = new java.net.URL(URL + api + "?" + param);
 			HttpsURLConnection connection = (HttpsURLConnection) url
 					.openConnection();
-			connection.setRequestMethod("POST");
+			connection.setRequestMethod("GET");
 			connection.setRequestProperty("Connection", "Keep-Alive");
-			connection.setRequestProperty("Content-Type", "application/json");
-			connection.setRequestProperty("Content-Length",
-					Integer.toString(param.length()));
 
 			connection.setDoInput(true);
 			connection.setDoOutput(true);
