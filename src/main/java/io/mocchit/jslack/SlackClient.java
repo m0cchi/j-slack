@@ -3,6 +3,7 @@ package io.mocchit.jslack;
 import io.mocchit.jslack.api.Result;
 import io.mocchit.jslack.api.method.Api;
 import io.mocchit.jslack.api.method.Auth;
+import io.mocchit.jslack.api.method.Channels;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -15,17 +16,19 @@ import java.net.URL;
 
 import javax.net.ssl.HttpsURLConnection;
 
-public class SlackClient implements Api , Auth{
+public class SlackClient implements Api, Auth, Channels {
 	private static String FAIL_CODE = "{\"ok\":false}";
 	private String token;
+	private String charset;
 
 	public SlackClient(String token) {
 		this.token = token;
+		this.charset = "UTF-8";
 	}
 
 	private String getResult(InputStream is, int resultCode) throws IOException {
 		BufferedInputStream bis = new BufferedInputStream(is);
-		InputStreamReader isr = new InputStreamReader(bis);
+		InputStreamReader isr = new InputStreamReader(bis, this.charset);
 		BufferedReader br = new BufferedReader(isr);
 		StringBuilder builder = new StringBuilder();
 		if (resultCode == HttpURLConnection.HTTP_OK) {
@@ -49,7 +52,8 @@ public class SlackClient implements Api , Auth{
 					.openConnection();
 			connection.setRequestMethod("GET");
 			connection.setRequestProperty("Connection", "Keep-Alive");
-
+			connection.setRequestProperty("Content-Type", "charset="
+					+ this.charset);
 			connection.setDoInput(true);
 			connection.setDoOutput(true);
 			connection.setUseCaches(false);
