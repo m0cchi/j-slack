@@ -1,7 +1,9 @@
 package io.mocchit.jslack.api;
 
-import java.net.HttpURLConnection;
-
 public interface BaseAPI {
-	String send(String api,String param);
+	final static String URL = "https://slack.com/api/";
+
+	Result send(String api, String param);
+
+	String getToken();
 }
