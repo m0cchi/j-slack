@@ -13,7 +13,6 @@ public class Post {
     client.postMessage("C02KJP710", "Hello!", new HashMap<String, String>() {
       {
         put("as_user", Boolean.toString(true));
-        put("icon_emoji", ":sushi:");
       }
     });
   }
