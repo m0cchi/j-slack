@@ -29,4 +29,8 @@ public class ApiUtil {
 		builder.append(value);
 		return builder.toString();
 	}
+	
+	public static String concat(String key,String value){
+		return concat("&", key, value);
+	}
 }
