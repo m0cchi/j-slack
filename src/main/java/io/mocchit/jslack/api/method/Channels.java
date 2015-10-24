@@ -14,7 +14,7 @@ public interface Channels extends BaseAPI {
 	 *            Channel to archive
 	 * @return
 	 */
-	default Result archive(String channel) {
+	default Result archiveChannel(String channel) {
 		return send("channels.archive", getTokenParam() + "&channel=" + channel);
 	}
 
@@ -25,7 +25,7 @@ public interface Channels extends BaseAPI {
 	 *            Name of channel to create
 	 * @return
 	 */
-	default Result create(String name) {
+	default Result createChannel(String name) {
 		return send("channels.create", getTokenParam() + "&name=" + name);
 	}
 
@@ -38,7 +38,7 @@ public interface Channels extends BaseAPI {
 	 *            https://api.slack.com/methods/channels.history
 	 * @return
 	 */
-	default Result history(String channel, Map<String, String> optionals) {
+	default Result fetchChannelHistory(String channel, Map<String, String> optionals) {
 		StringBuilder builder = new StringBuilder(getTokenParam());
 		builder.append("&channel=");
 		builder.append(channel);
@@ -53,8 +53,8 @@ public interface Channels extends BaseAPI {
 	 *            Channel to fetch history for.
 	 * @return
 	 */
-	default Result history(String channel) {
-		return history(channel, null);
+	default Result fetchChannelHistory(String channel) {
+		return fetchChannelHistory(channel, null);
 	}
 
 	/**
@@ -64,7 +64,7 @@ public interface Channels extends BaseAPI {
 	 *            Channel to get info on
 	 * @return
 	 */
-	default Result info(String channel) {
+	default Result fetchChannelInfo(String channel) {
 		return send("channels.info", getTokenParam() + "&channel=" + channel);
 	}
 
@@ -77,7 +77,7 @@ public interface Channels extends BaseAPI {
 	 *            User to invite to channel.
 	 * @return
 	 */
-	default Result invite(String channel, String user) {
+	default Result inviteToChannel(String channel, String user) {
 		return send("channels.invite", getTokenParam() + "&channel=" + channel
 				+ "&user=" + user);
 	}
@@ -89,7 +89,7 @@ public interface Channels extends BaseAPI {
 	 *            Name of channel to join
 	 * @return
 	 */
-	default Result join(String name) {
+	default Result joinChannel(String name) {
 		return send("channels.join", getTokenParam() + "&name=" + name);
 	}
 
@@ -102,7 +102,7 @@ public interface Channels extends BaseAPI {
 	 *            User to remove from channel.
 	 * @return
 	 */
-	default Result kick(String channel, String name) {
+	default Result kickChannelUser(String channel, String name) {
 		return send("channels.kick", getTokenParam() + "&channel=" + channel
 				+ "&name=" + name);
 	}
@@ -114,7 +114,7 @@ public interface Channels extends BaseAPI {
 	 *            Channel to leave
 	 * @return
 	 */
-	default Result leave(String channel) {
+	default Result leaveChannel(String channel) {
 		return send("channels.leave", getTokenParam() + "&channel=" + channel);
 	}
 
@@ -125,7 +125,7 @@ public interface Channels extends BaseAPI {
 	 * @param optionals
 	 * @return
 	 */
-	default Result list(Map<String, String> optionals) {
+	default Result listOfChannel(Map<String, String> optionals) {
 		StringBuilder builder = new StringBuilder(getTokenParam());
 		builder.append(ApiUtil.toParam(optionals));
 		return send("channels.list", builder.toString());
@@ -136,8 +136,8 @@ public interface Channels extends BaseAPI {
 	 * 
 	 * @return
 	 */
-	default Result list() {
-		return list(null);
+	default Result listOfChannel() {
+		return listOfChannel(null);
 	}
 
 	/**
@@ -149,7 +149,7 @@ public interface Channels extends BaseAPI {
 	 *            Timestamp of the most recently seen message.
 	 * @return
 	 */
-	default Result mark(String channel, String ts) {
+	default Result markChannel(String channel, String ts) {
 		return send("channels.mark", getTokenParam() + "&channel=" + channel
 				+ "&ts=" + ts);
 	}
@@ -163,7 +163,7 @@ public interface Channels extends BaseAPI {
 	 *            New name for channel.
 	 * @return
 	 */
-	default Result rename(String channel, String name) {
+	default Result renameChannel(String channel, String name) {
 		return send("channels.rename", getTokenParam() + "&channel=" + channel
 				+ "&name=" + name);
 	}
@@ -177,7 +177,7 @@ public interface Channels extends BaseAPI {
 	 *            The new purpose
 	 * @return
 	 */
-	default Result setPurpose(String channel, String purpose) {
+	default Result setChannelPurpose(String channel, String purpose) {
 		return send("channels.setPurpose", getTokenParam() + "&channel="
 				+ channel + "&purpose=" + purpose);
 	}
@@ -191,7 +191,7 @@ public interface Channels extends BaseAPI {
 	 *            The new topic
 	 * @return
 	 */
-	default Result setTopic(String channel, String topic) {
+	default Result setChannelTopic(String channel, String topic) {
 		return send("channels.setTopic", getTokenParam() + "&channel="
 				+ channel + "&topic=" + topic);
 	}
@@ -203,7 +203,7 @@ public interface Channels extends BaseAPI {
 	 *            Channel to unarchive
 	 * @return
 	 */
-	default Result unarchive(String channel) {
+	default Result unarchiveChannel(String channel) {
 		return send("channels.unarchive", getTokenParam() + "&channel="
 				+ channel);
 	}
