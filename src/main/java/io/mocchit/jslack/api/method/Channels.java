@@ -125,7 +125,7 @@ public interface Channels extends BaseAPI {
 	 * @param optionals
 	 * @return
 	 */
-	default Result listOfChannel(Map<String, String> optionals) {
+	default Result fetchChannelList(Map<String, String> optionals) {
 		StringBuilder builder = new StringBuilder(getTokenParam());
 		builder.append(ApiUtil.toParam(optionals));
 		return send("channels.list", builder.toString());
@@ -136,8 +136,8 @@ public interface Channels extends BaseAPI {
 	 * 
 	 * @return
 	 */
-	default Result listOfChannel() {
-		return listOfChannel(null);
+	default Result fetchChannelList() {
+		return fetchChannelList(null);
 	}
 
 	/**
