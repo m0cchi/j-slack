@@ -21,4 +21,12 @@ public class ApiUtil {
 		}
 		return builder.toString();
 	}
+	
+	public static String concat(String prefix,String key,String value){
+		StringBuilder builder = new StringBuilder(prefix);
+		builder.append(key);
+		builder.append("=");
+		builder.append(value);
+		return builder.toString();
+	}
 }
