@@ -1,0 +1,21 @@
+#+title: j-slack
+Slack API wrapper
+
+#+BEGIN_SRC java
+package io.mocchit.api;
+
+import io.mocchit.jslack.SlackClient;
+
+public class Post {
+  public static void main(String[] args) {
+    String token = "xoxp-xxxxxxxxxxxxxxxxxxxxxxxx";
+    SlackClient client = new SlackClient(token);
+    client.postMessage("C02KJP710", "Hello!", new HashMap<String, String>() {
+      {
+        put("as_user", Boolean.toString(true));
+        put("icon_emoji", ":sushi:");
+      }
+    });
+  }
+}
+#+END_SRC
