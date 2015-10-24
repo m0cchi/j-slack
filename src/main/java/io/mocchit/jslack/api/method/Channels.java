@@ -1,10 +1,10 @@
 package io.mocchit.jslack.api.method;
 
+import io.mocchit.jslack.api.ApiUtil;
 import io.mocchit.jslack.api.BaseAPI;
 import io.mocchit.jslack.api.Result;
 
 import java.util.Map;
-import java.util.Map.Entry;
 
 public interface Channels extends BaseAPI {
 	/**
@@ -39,17 +39,10 @@ public interface Channels extends BaseAPI {
 	 * @return
 	 */
 	default Result history(String channel, Map<String, String> optionals) {
-		StringBuilder builder = new StringBuilder(getTokenParam() + "&channel="
-				+ channel);
-
-		if (optionals != null) {
-			for (Entry<String, String> entry : optionals.entrySet()) {
-				builder.append("&");
-				builder.append(entry.getKey());
-				builder.append("=");
-				builder.append(entry.getValue());
-			}
-		}
+		StringBuilder builder = new StringBuilder(getTokenParam());
+		builder.append("&channel=");
+		builder.append(channel);
+		builder.append(ApiUtil.toParam(optionals));
 		return send("channels.history", builder.toString());
 	}
 
@@ -134,15 +127,7 @@ public interface Channels extends BaseAPI {
 	 */
 	default Result list(Map<String, String> optionals) {
 		StringBuilder builder = new StringBuilder(getTokenParam());
-
-		if (optionals != null) {
-			for (Entry<String, String> entry : optionals.entrySet()) {
-				builder.append("&");
-				builder.append(entry.getKey());
-				builder.append("=");
-				builder.append(entry.getValue());
-			}
-		}
+		builder.append(ApiUtil.toParam(optionals));
 		return send("channels.list", builder.toString());
 	}
 
