@@ -4,6 +4,7 @@ import io.mocchit.jslack.api.Result;
 import io.mocchit.jslack.api.method.Api;
 import io.mocchit.jslack.api.method.Auth;
 import io.mocchit.jslack.api.method.Channels;
+import io.mocchit.jslack.api.method.Chat;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -16,7 +17,7 @@ import java.net.URL;
 
 import javax.net.ssl.HttpsURLConnection;
 
-public class SlackClient implements Api, Auth, Channels {
+public class SlackClient implements Api, Auth, Channels, Chat {
 	private static String FAIL_CODE = "{\"ok\":false}";
 	private String token;
 	private String charset;
