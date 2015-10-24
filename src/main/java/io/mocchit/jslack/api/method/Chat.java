@@ -17,7 +17,7 @@ public interface Chat extends BaseAPI {
 	 *            Timestamp of the message to be deleted.
 	 * @return
 	 */
-	default Result delete(String channel, String ts) {
+	default Result deleteMessage(String channel, String ts) {
 		StringBuilder builder = new StringBuilder(getTokenParam());
 		builder.append(ApiUtil.concat("ts", ts));
 		builder.append(ApiUtil.concat("channel", channel));
@@ -59,7 +59,7 @@ public interface Chat extends BaseAPI {
 	 *            https://api.slack.com/methods/chat.update
 	 * @return
 	 */
-	default Result update(String channel, String ts, String text,
+	default Result updateMessage(String channel, String ts, String text,
 			Map<String, String> optionals) {
 		StringBuilder builder = new StringBuilder(getTokenParam());
 		builder.append(ApiUtil.concat("channel", channel));
